@@ -1,37 +1,44 @@
-"""Testing the Calculator"""
+"""Testing the Calculator_main"""
 from calculator.main import Calculator
 
-def test_calculator_result():
+def test_result():
     """testing calculator result is 0"""
     calc = Calculator()
     assert calc.result == 0
 
-def test_calculator_add():
+def test_add():
     """Testing the Add function of the calculator"""
-    #Arrange by instantiating the calc class
+    #Calls the calculator class from main.py
     calc = Calculator()
-    #Act by calling the method to be tested
+    #Calls the add function from main.py and inputs static number.
     calc.add_number(8)
     #Assert that the results are correct
     assert calc.result == 8
 
-def test_calculator_get_result():
-    """Testing the Get result method of the calculator"""
+def test_get_result():
+    """Calls the calculator class from main.py"""
     calc = Calculator()
+    # Assert that the results are correct
     assert calc.get_result() == 0
 
-def test_calculator_subtract():
-    """Testing the subtract method of the calculator"""
+def test_subtract():
+    """Calls the calculator class from main.py"""
     calc = Calculator()
-    calc.subtract_number(1)
-    assert calc.get_result() == -1
-def test_calculator_multiply():
-    """ tests multiplication of two numbers"""
+    # Calls the subtract function from main.py and inputs static number.
+    calc.subtract_number(2)
+    # Assert that the results are correct
+    assert calc.get_result() == -2
+def test_multiply():
+    """Calls the calculator class from main.py"""
     calc = Calculator()
-    result  = calc.multiply_numbers(1,2)
+    # Calls the multiplication function from main.py and inputs static number.
+    result  = calc.multiply_numbers(2,2)
+    # Assert that the results are correct
+    assert result == 4
+def test_divison():
+    """Calls the calculator class from main.py"""
+    calc = Calculator()
+    # Calls the division function from main.py and inputs static number.
+    result = calc.division_number(6,3)
+    # Assert that the results are correct
     assert result == 2
-def test_calculator_divison():
-    """ tests division of two numbers"""
-    calc = Calculator()
-    result = calc.division_number(3,3)
-    assert result == 1
