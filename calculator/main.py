@@ -20,7 +20,9 @@ class Calculator:
         self.result = value_a * value_b
         return self.result
     def division_number(self, value_a, value_b):
-        """ divide two numbers and store the result"""
+        """ multiply two numbers and store the result"""
+        # if (value_b == 0):
+        #     ZeroDivisionError: print("Number divided by Zero")
+        # else:
         self.result = value_a / value_b
         return self.result
-
