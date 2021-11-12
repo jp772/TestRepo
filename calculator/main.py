@@ -2,6 +2,7 @@
 class Calculator:
     """ This is the Calculator class"""
     result = 0
+    history = []
     def get_result(self):
         """ Get Result of Calculation"""
         return self.result
