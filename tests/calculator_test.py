@@ -1,44 +1,51 @@
+import pytest
 """Testing the Calculator_main"""
 from calculator.main import Calculator
+@pytest.fixture()
+def clear_history():
+    Calculator.clear_history()
 
-def test_result():
-    """testing calculator result is 0"""
-    calc = Calculator()
-    assert calc.result == 0
-
-def test_add():
+def test_addition(clear_history):
     """Testing the Add function of the calculator"""
-    #Calls the calculator class from main.py
-    calc = Calculator()
-    #Calls the add function from main.py and inputs static number.
-    calc.add_number(8)
-    #Assert that the results are correct
-    assert calc.result == 8
+    assert Calculator.add_number(1, 2) == 3
+    assert Calculator.add_number(2, 2) == 4
+    assert Calculator.add_number(3, 2) == 5
+    assert Calculator.add_number(4, 2) == 6
+    assert Calculator.history_count() == 4
+    assert Calculator.get_result_of_last_calculation_added_to_history() == 6
 
-def test_get_result():
-    """Calls the calculator class from main.py"""
-    calc = Calculator()
-    # Assert that the results are correct
-    assert calc.get_result() == 0
+def test_clear_history(clear_history):
+    assert Calculator.add_number(1, 2) == 3
+    assert Calculator.add_number(2, 2) == 4
+    assert Calculator.add_number(3, 2) == 5
+    assert Calculator.add_number(4, 2) == 6
+    assert Calculator.clear_history() == True
+    assert Calculator.history_count() == 0
 
-def test_subtract():
+def test_count_history(clear_history):
+    assert Calculator.history_count() == 0
+    assert Calculator.add_number(1, 2) == 3
+    assert Calculator.add_number(2, 2) == 4
+    assert Calculator.history_count() == 2
+
+def test_get_last_calculation_result(clear_history):
+    assert Calculator.add_number(2, 2) == 4
+    assert Calculator.add_number(1, 2) == 3
+    assert Calculator.get_result_of_last_calculation_added_to_history() == 3
+
+def test_get_first_calculation_result(clear_history):
+    assert Calculator.add_number(2, 2) == 4
+    assert Calculator.add_number(1, 2) == 3
+    assert Calculator.get_result_of_first_calculation_added_to_history() == 4
+
+def test_subtract(clear_history):
     """Calls the calculator class from main.py"""
-    calc = Calculator()
-    # Calls the subtract function from main.py and inputs static number.
-    calc.subtract_number(2)
-    # Assert that the results are correct
-    assert calc.get_result() == -2
-def test_multiply():
+    assert Calculator.subtract_number(1,2) == -1
+
+def test_multiply(clear_history):
     """Calls the calculator class from main.py"""
-    calc = Calculator()
-    # Calls the multiplication function from main.py and inputs static number.
-    result  = calc.multiply_numbers(2,2)
-    # Assert that the results are correct
-    assert result == 4
-def test_divison():
+    assert Calculator.multiply_numbers(2,2) == 4
+
+def test_divison(clear_history):
     """Calls the calculator class from main.py"""
-    calc = Calculator()
-    # Calls the division function from main.py and inputs static number.
-    result = calc.division_number(6,3)
-    # Assert that the results are correct
-    assert result == 2
+    assert Calculator.division_number(6,3) == 2

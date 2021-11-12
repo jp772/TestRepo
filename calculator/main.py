@@ -1,25 +1,63 @@
 """ This is the increment function"""
+
+from calcu.addition import Addition
+from calcu.subtraction import Subtraction
+from calcu.multiplication import Multiplication
+from calcu.division import Division
+
 class Calculator:
     """ This is the Calculator class"""
-    result = 0
     history = []
-    def get_result(self):
-        """ Get Result of Calculation"""
-        return self.result
 
-    def add_number(self, sum_a):
+    @staticmethod
+    def clear_history():
+        Calculator.history.clear()
+        return True
+
+    @staticmethod
+    def history_count():
+        return len(Calculator.history)
+
+    @staticmethod
+    def add_calculation_to_history(calculation):
+        Calculator.history.append(calculation)
+        return True
+
+    @staticmethod
+    def get_result_of_first_calculation_added_to_history():
+        # this object add the last item to history and will get the results automatically.
+        return Calculator.history[0].getResult()
+
+    @staticmethod
+    def get_result_of_last_calculation_added_to_history():
+        # this object add the last item to history and will get the results automatically.
+        return Calculator.history[-1].getResult()
+
+    @staticmethod
+    def add_number(value_a, value_b):
         """ adds number to result"""
-        self.result = self.result + sum_a
-        return self.result
-    def subtract_number(self, sub_a):
+        #create an addition object
+        addition = Addition.create(value_a, value_b)
+        Calculator.add_calculation_to_history(addition)
+        return Calculator.get_result_of_last_calculation_added_to_history()
+
+    @staticmethod
+    def subtract_number(value_a, value_b):
         """ subtract number from result"""
-        self.result = self.result - sub_a
-        return self.result
-    def multiply_numbers(self, mul_1, mul_2):
+        subtraction = Subtraction.create(value_a, value_b)
+        Calculator.add_calculation_to_history(subtraction)
+        return Calculator.get_result_of_last_calculation_added_to_history()
+
+    @staticmethod
+    def multiply_numbers(value_a, value_b):
         """ multiply two numbers and store the result"""
-        self.result = mul_1 * mul_2
-        return self.result
-    def division_number(self, div_1, div_2):
+        multiplication = Multiplication.create(value_a, value_b)
+        Calculator.add_calculation_to_history(multiplication)
+        return Calculator.get_result_of_last_calculation_added_to_history()
+
+    @staticmethod
+    def division_number(value_a, value_b):
         """ Divide two numbers and store the result"""
-        self.result = div_1 / div_2
-        return self.result
+        division = Division.create(value_a, value_b)
+        Calculator.add_calculation_to_history(division)
+        return Calculator.get_result_of_last_calculation_added_to_history()
