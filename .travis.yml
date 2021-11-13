@@ -9,5 +9,5 @@ script:
 
 branches:
   only:
-    - refactorcalc
+    - calc_part_2
     - development
