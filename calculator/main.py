@@ -11,27 +11,30 @@ class Calculator:
 
     @staticmethod
     def clear_history():
+        """This method clears the history"""
         Calculator.history.clear()
         return True
 
     @staticmethod
     def history_count():
+        """This method counts the calculations"""
         return len(Calculator.history)
 
     @staticmethod
     def add_calculation_to_history(calculation):
+        """This method adds all the result to calculation"""
         Calculator.history.append(calculation)
         return True
 
     @staticmethod
     def get_result_of_first_calculation_added_to_history():
-        # this object add the last item to history and will get the results automatically.
-        return Calculator.history[0].getResult()
+        """this object add the last item to history and will get the results automatically."""
+        return Calculator.history[0].get_result()
 
     @staticmethod
     def get_result_of_last_calculation_added_to_history():
-        # this object add the last item to history and will get the results automatically.
-        return Calculator.history[-1].getResult()
+        """this object add the last item to history and will get the results automatically."""
+        return Calculator.history[-1].get_result()
 
     @staticmethod
     def add_number(value_a, value_b):
