@@ -1,5 +1,7 @@
 # Calculator Project Setup
-[![Build Status](https://app.travis-ci.com/jp772/calc22.svg?branch=main)](https://app.travis-ci.com/jp772/calc22)
+
+![img_2.png](img_2.png)
+![img_1.png](img_1.png)
 Main branch
 Run Pip Install
 pip install -r requirements.txt
