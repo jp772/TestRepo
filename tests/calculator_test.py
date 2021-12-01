@@ -1,9 +1,11 @@
 """Importing pytest for the static fixture"""
 
 import pytest
-
 from calc.history.calculations import Calculations
 from calculator.main import Calculator
+from calc.calculations.addition import Addition
+from calc.calculations.multiplication import Multiplication
+from calc.calculations.subtraction import Subtraction
 
 @pytest.fixture
 def clear_history_fixture():
@@ -14,19 +16,28 @@ def clear_history_fixture():
 def test_calculator_add_static(clear_history_fixture):
     """testing that our calculator has a static method for addition"""
     # pylint: disable=unused-argument,redefined-outer-name
-    assert Calculator.add_number(1.0,2.0,3.0) == 6.0
-
+    #using Tuple instead of args because we can pack as much data as we need into the tuple
+    my_tuple = (1.0,2.0,5.0)
+    assert isinstance(Calculator.add_numbers(my_tuple), Addition)
+    assert Calculator.get_last_result_value() == 8.0
 def test_calculator_subtract_static(clear_history_fixture):
     """Testing the subtract method of the calc"""
     # pylint: disable=unused-argument,redefined-outer-name
-    assert Calculator.subtract_number(1.0,2.0) == -3.0
+    #using Tuple instead of args because we can pack as much data as we need into the tuple
+    my_tuple = (1.0,2.0,3.0)
+    #creating the calculation result object
+    calculation_result_object = Calculator.subtract_numbers(my_tuple)
+    #testing the instance
+    assert isinstance(calculation_result_object, Subtraction)
+    #testing the last result of the calculation
+    assert Calculator.get_last_result_value() == -6.0
+    #testing that the result object performs the calculation
+    assert calculation_result_object.get_result() == -6.0
 
 def test_calculator_multiply_static(clear_history_fixture):
     """Testing the subtract method of the calc"""
     # pylint: disable=unused-argument,redefined-outer-name
-    assert Calculator.multiply_number(1.0,2.0) == 2.0
-
-def test_calculator_divide_static(clear_history_fixture):
-    """Testing the subtract method of the calc"""
-    # pylint: disable=unused-argument,redefined-outer-name
-    assert Calculator.division_number(3.0,6.0) == 2.0
+    #using Tuple instead of args because we can pack as much data as we need into the tuple
+    my_tuple = (1.0,2.0,3.0)
+    assert isinstance(Calculator.multiply_numbers(my_tuple), Multiplication)
+    assert Calculator.get_last_result_value() == 6.0

@@ -1,33 +1,27 @@
 """ This is the increment function"""
-from calc.calculations.addition import Addition
-from calc.calculations.subtraction import Subtraction
-from calc.calculations.multiplication import Multiplication
-from calc.calculations.division import Division
 from calc.history.calculations import Calculations
 
+#the calculator class just contains the methods to calculate
 class Calculator:
     """ This is the Calculator class"""
+    #the calculator class just calls methods on Calculations class
     @staticmethod
-    def add_number(*args):
-        """ adds number to result"""
-        calculation = Addition(args)
-        Calculations.add_calculation(calculation)
-        return calculation.get_result()
+    def get_last_result_value():
+        """ This is the gets the result of the calculation"""
+        # I made this method so that I don't have more than one action per function
+        return Calculations.get_last_calculation_result_value()
     @staticmethod
-    def subtract_number(*args):
-        """ subtract number from result"""
-        calculation = Subtraction(args)
-        Calculations.add_calculation(calculation)
-        return calculation.get_result()
+    #tuple allows me to pass in as many values as a I want
+    def add_numbers(tuple_values: tuple):
+        """ adds list of numbers and returns an addition result object"""
+        return Calculations.add_addition_calculation(tuple_values)
+
     @staticmethod
-    def multiply_number(*args):
-        """ multiply two numbers and store the result"""
-        calculation = Multiplication(args)
-        Calculations.add_calculation(calculation)
-        return calculation.get_result()
+    def subtract_numbers(tuple_values: tuple):
+        """ subtract a list of numbers from result and returns a subtraction result object"""
+        return Calculations.add_subtraction_calculation(tuple_values)
+
     @staticmethod
-    def division_number(*args):
-        """ Divide two numbers and store the result"""
-        calculation = Division(args)
-        Calculations.add_calculation(calculation)
-        return calculation.get_result()
+    def multiply_numbers(tuple_values: tuple):
+        """ multiplication number from result and returns a multiplication result object"""
+        return Calculations.add_multiplication_calculation(tuple_values)
