@@ -9,7 +9,10 @@ class Division(Calculation):
     calculation A and B from the calcualtion parent class"""
     def get_result(self):
         """Get Result is returning the self.value A and B"""
-        div_num = 1.0
-        for value in self.values:
-            div_num = value / div_num
+        div1 = enumerate(self.values)
+        for i, value in (div1):
+            if i != 0:
+                div_num = div_num / value
+            else:
+                div_num = value
         return div_num
