@@ -1,11 +1,19 @@
 """Testing Addition"""
+import os
+import logging
 from calc.calculations.addition import Addition
+from calculator.main import Calculator
+import pandas as pd
 
 def test_calculation_addition():
-    """testing that our calculator has a static method for addition"""
-    #Arrange
-    mynumbers = (1.0,2.0)
-    addition = Addition(mynumbers)
-    #Act
-    #Assert
-    assert addition.get_result() == 3.0
+    """testing addition calculation from csv input"""
+    df = pd.read_csv("csvfiles/addition.csv")
+    print(df.head(5))
+    for i, j in df.iterrows():
+        sum = (j.col1, j.col2)
+        addition = Addition.create(sum)
+        assert addition.get_result() == df['result'][i]
+
+
+
+
