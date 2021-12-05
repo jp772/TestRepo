@@ -8,9 +8,7 @@ fh = logging.FileHandler('../tests/Results_Log/logfile.log')
 
 fh.setFormatter(Log_Format)
 logger.addHandler(fh)
-#pylint: disable=logging-fstring-interpolation
-#pylint: disable=unspecified-encoding
-#pylint: disable=f-string-without-interpolation
+
 
 def log_data_to_logfile(time,record_num,filename, col1, operation, col2, result):
     record_num +=  1
