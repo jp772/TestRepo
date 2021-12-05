@@ -5,10 +5,7 @@ class Multiplication(Calculation):
     """subtraction calculation object"""
     def get_result(self):
         """get the multiplication results"""
-        multi1 = enumerate(self.values)
-        for i, value in (multi1):
-            if i != 0:
-                result = result * value
-            else:
-                result = value
+        result = 1.0
+        for value in self.values:
+            result = result * value
         return result

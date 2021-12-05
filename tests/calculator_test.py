@@ -1,11 +1,16 @@
 """Importing pytest for the static fixture"""
 
 import pytest
+import os
+import pandas as pd
 from calc.history.calculations import Calculations
 from calculator.main import Calculator
 from calc.calculations.addition import Addition
 from calc.calculations.multiplication import Multiplication
 from calc.calculations.subtraction import Subtraction
+from calc.calculations.division import Division
+
+dirname = os.path.dirname("addition.csv")
 
 @pytest.fixture
 def clear_history_fixture():
@@ -17,27 +22,51 @@ def test_calculator_add_static(clear_history_fixture):
     """testing that our calculator has a static method for addition"""
     # pylint: disable=unused-argument,redefined-outer-name
     #using Tuple instead of args because we can pack as much data as we need into the tuple
-    my_tuple = (1.0,2.0,5.0)
-    assert isinstance(Calculator.add_numbers(my_tuple), Addition)
-    assert Calculator.get_last_result_value() == 8.0
+
+    filename = os.path.join(dirname, 'Input Files/addition.csv')
+    df = pd.read_csv(filename)
+    print(df.head(5))
+    for i, j in df.iterrows():
+        sum = (j.col1, j.col2)
+        addition = Addition.create(sum)
+        logger.error("Input Files")
+        assert addition.get_result() == df['result'][i]
+
 def test_calculator_subtract_static(clear_history_fixture):
     """Testing the subtract method of the calc"""
     # pylint: disable=unused-argument,redefined-outer-name
     #using Tuple instead of args because we can pack as much data as we need into the tuple
-    my_tuple = (1.0,2.0,3.0)
-    #creating the calculation result object
-    calculation_result_object = Calculator.subtract_numbers(my_tuple)
-    #testing the instance
-    assert isinstance(calculation_result_object, Subtraction)
-    #testing the last result of the calculation
-    assert Calculator.get_last_result_value() == -6.0
-    #testing that the result object performs the calculation
-    assert calculation_result_object.get_result() == -6.0
+    dirname = os.path.dirname("subtraction.csv")
+    filename = os.path.join(dirname, 'Input Files/subtraction.csv')
+    df = pd.read_csv(filename)
+    print(df.head(5))
+    for i, j in df.iterrows():
+        sub = (j.col1, j.col2)
+        subtraction = Subtraction.create(sub)
+        assert subtraction.get_result() == df['result'][i]
 
 def test_calculator_multiply_static(clear_history_fixture):
     """Testing the subtract method of the calc"""
     # pylint: disable=unused-argument,redefined-outer-name
     #using Tuple instead of args because we can pack as much data as we need into the tuple
-    my_tuple = (1.0,2.0,3.0)
-    assert isinstance(Calculator.multiply_numbers(my_tuple), Multiplication)
-    assert Calculator.get_last_result_value() == 6.0
+    dirname = os.path.dirname("multiplication.csv")
+    filename = os.path.join(dirname, 'Input Files/multiplication.csv')
+    df = pd.read_csv(filename)
+    print(df.head(5))
+    for i, j in df.iterrows():
+        multi = (j.col1, j.col2)
+        multiplication = Multiplication.create(multi)
+        assert multiplication.get_result() == df['result'][i]
+
+def test_calculator_divide_static(clear_history_fixture):
+    dirname = os.path.dirname("division.csv")
+    filename = os.path.join(dirname, 'Input Files/division.csv')
+    df = pd.read_csv(filename)
+    print(df.head(5))
+    for i, j in df.iterrows():
+        div = (j.col1, j.col2)
+        division = Division.create(div)
+        try:
+            assert division.get_result() == df['result'][i]
+        except ZeroDivisionError:
+            print("Zero Division Error occurred")
