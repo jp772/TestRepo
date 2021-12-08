@@ -4,7 +4,6 @@ import pytest
 import os
 import pandas as pd
 from calc.history.calculations import Calculations
-from calculator.main import Calculator
 from calc.calculations.addition import Addition
 from calc.calculations.multiplication import Multiplication
 from calc.calculations.subtraction import Subtraction
