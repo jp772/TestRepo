@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>OOP Principle</title>
+    <link href="CSS/OOPPrinciple.css" rel="stylesheet">
+    <link href="CSS/global.css" rel="stylesheet">
+    <!-- <meta content="width=device-width, initial-scale=1" name="viewport"> -->
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="Images/Logo-removebg-preview.png" class="main-logo" alt="...">
+        </a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-nav-scroll ">
+                <li class="nav-item justify-content-end">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link active" href="Pylint&OOPTutorial.html">Pylint</a>
+                    <a class="nav-link active" href="OOPProgramming.html">OOP</a>
+                    <a class="nav-link active" href="AAATesting.html">AAA</a>
+                    <a class="nav-link active" href="SOLID.html">SOLID</a>
+                </li>
+                <li class="nav-item dropdown flex-column-sm alignn-items-sm-end user-profile-dd">
+                    <a class="nav-link dropdown-toggle justify-content-center align-items-center" href="#" id="navbarDropdown1" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="Images/profileicon.jpg" alt='user_avatar' class="me-2 rounded-circle user-avatar">User
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                        <li><a class="dropdown-item" href="profile.html">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="logout.html">Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h1 class="mt-5 mb-4">OOP Principles</h1>
+    <div class="row">
+        <div class="col-sm-7">
+            <h3>Encapsulation</h3>
+            <p>Encapsulation is achieved when each object within a class maintains its state private.
+                This state is not accessible to other objects directly. They can only call a set of public functions known as methods.</p>
+            <p>Lets take a look at the example to the right.</p>
+            <menu><li>First, calc_test.py creates an object called calc.</li>
+            <li>Second, the object is used to call the add_number method with static entry 8.</li>
+            <li>Third, the add method from main.py adds the value and returns the result back to calc_test.py. </li>
+            <li>Let's say if you wanted the method to subtract, that would not work since add method is only defined to add.</li>
+            <li>We achieved encapsulation by calling the add_number and letting it do whatever it is defined to do.</li></menu>
+
+        </div>
+        <div class="col-sm-5">
+            <h5>calc_test.py</h5>
+            <pre>def test_add():
+    """Testing the Add function of the calculator"""
+    calc = Calculator()
+
+    calc.add_number(8)</pre>
+            <h5>Main.py</h5>
+            <pre>def add_number(self, value_a):
+    """ adds number to result"""
+    self.result = self.result + value_a
+    return self.result
+            </pre>
+
+        </div>
+    </div>
+</div>
+
+<div class="w-100 bg-orange-light py-5">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-sm-7">
+                <h3> Inheritance</h3>
+                <p>Inheritance is a technique for generating a new class that uses the details of an existing one without changing it.
+                    A derived class is the freshly produced class (or child class) from a parent class. </p>
+                <p>Lets take a look at the example to the right.</p>
+                <menu><li>First, we have the parent class called Addition.py at the top.</li>
+                <li>Second, we created Main.py which calls the Addition class and uses the same properties.</li>
+                <li>Third, we add new property called calculations.add_calculation(calculation) which sends data to another class.</li>
+                <li>We achieved Inheritance by using the same details from parent class without changing and adding additional properties.</li></menu>
+
+            </div>
+            <div class="col-sm-5">
+                <h5>Addition.py</h5>
+                <pre>class Addition(Calculation):
+ def get_result(self):
+     """Get Result is returning the self.value A and B"""
+     sum_of_values = 0.0
+        for value in self.values:
+            sum_of_values = value + sum_of_values
+        return sum_of_values
+</pre>
+                <h5>Main.py</h5>
+                <pre>def add_number(*args):
+    calculation = Addition(args)
+
+    Calculations.add_calculation(calculation)
+
+    return calculation.get_result()</pre>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-7">
+            <h3> Polymorphism</h3>
+            <p>Polymorphism allows you to utilize a class that is identical to its parent, avoiding type confusion. However, each child class retains its own methods.
+                This is usually accomplished by defining a reusable (parent) interface. It describes a number of common techniques. The child classes then implement their own versions of these methods.</p>
+            <p>Lets take a look at the example to the right.</p>
+            <menu><li>First, we have the parent class called Calculations.py where we have the clear_history method.</li>
+            <li>Second, we created Calculator_test.py to use the identical method for clear_history as from Calculations.py and using them differently from the parent class.</li>
+            <li>Third, clear_history in Calculator_test.py acts like common interface which gets reused for below function test_clear_history</li>
+            </menu>
+
+        </div>
+        <div class="col-sm-5">
+            <h5>Calculations.py</h5>
+            <pre>def clear_history():
+    """Clear history method"""
+    Calculations.history.clear()
+    return True
+</pre>
+            <h5>Calculator_test.py</h5>
+            <pre>def clear_history():
+    """Testing clear history function"""
+    Calculator.clear_history()
+
+def test_clear_history(clear_history):
+    """Testing clear history function"""
+    assert Calculator.add_number(1, 2) == 3
+    assert Calculator.clear_history() == True
+    assert Calculator.history_count() == 0
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-7">
+            <h3> Abstraction</h3>
+            <p>Abstraction means hiding the complexity and only showing the essential features of the object. So in a way, Abstraction means hiding the real implementation and we, as a user, knowing only how to use it.
+                Real world example would be a vehicle which we drive without caring or knowing what all is going underneath.</p>
+            <p>Lets take a look at the example to the right.</p>
+            <menu><li>First, we have a child class calc_test.py which imports abstract class called Calculator at the top. </li>
+            <li>Second, we don't know what the abstract class does since its hidden but we can can create an object of that abstract class called "calc". </li>
+            <li>Third, we invoke the add_number() method using the object "calc".</li></menu>
+
+            <p>We know how to invoke the methods inside the abstract class but we dont know what they actually do.</p>
+
+
+        </div>
+        <div class="col-sm-5">
+            <h5>Calc_test.py</h5>
+            <pre>from calculator.main import Calculator
+
+def test_add():
+    """Testing the Add function of the calculator"""
+
+    calc = Calculator()
+
+    calc.add_number(8)
+
+    assert calc.result == 8</pre>
+        </div>
+    </div>
+</div>
+
+
+<div class="unit_nav">
+    <a href="Pylint&OOPTutorial.html"> &lt; Previous</a>
+    Page 11 of 13
+    <a href="AAATesting.html"> Next > </a>
+</div>
+
+<footer class="container mt-4 mb-4" style="text-align: center">
+    <div class="copyright" style="padding-bottom: 2%">Jay Patel&#169;</div>
+    <h6>References</h6>
+    <a href="https://www.freecodecamp.org/news/object-oriented-programming-concepts-21bb035f7260/">Reference 1</a>
+    <a href="https://github.com/jp772/Project2">GitHub Repo</a>
+    <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2Fproject2tutorial.eastus.azurecontainer.io%2F" rel="nofollow" title="Validate as HTML5"><img alt="w3c" src="Images/W3c.png" style="height: 50px; width: 100px"></a>
+</footer>
+
+
+
+<script crossorigin="anonymous" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

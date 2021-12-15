@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}Pylint{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/Pylint.css') }}"/>
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mt-5 mb-4">OOP & Pylint Tutorial</h1>
+    <div class="row">
+        <div class="col-sm-7">
+            <h3>OOP & 4 Pillars</h3>
+            <p>OOP is a computer programming paradigm where you create objects to work with.</p>
+            <p>The four principles of OOP are Encapsulation, Abstraction, Inheritance, and Polymorphism.</p>
+
+            <img src="Images/oop4pillars.png" alt="Image of OOP 4 Pillars">
+        </div>
+        <div class="col-sm-5">
+            <h3>Pylint</h3>
+            <p>
+                Pylint is a tool created to inspect python code for errors and give feedback on how to improve the code to meet
+                PEP8 style guide. PEP8 style guide/rulebook is document that helps python coders write neat and well designed
+                code. It was written by Guido Van Rossum, Barry Warsaw, and Nick Coghlan.
+            </p>
+            <h3>Install Pylint</h3>
+            <h5>Windows</h5>
+            <pre>pip install pylint</pre>
+            <h5>MacOS</h5>
+            <pre>pip install pylint</pre>
+            <h5>Linux</h5>
+            <pre>sudo apt-get install pylint</pre>
+        </div>
+    </div>
+</div>
+
+<div class="w-100 bg-orange-light py-5">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-sm-7">
+                <h3> OOP Glossary</h3>
+                <p><b>Factory Pattern:</b> A factory is used to generate instances of other classes.</p>
+                <p><b>Instantiation:</b> The process of creating an object of a class. This is done with the constructor method __init__(self).</p>
+                <p><b>Object:</b>An instance of a class.</p>
+                <p><b>Class:</b>A template or blueprint from which objects can be instantiated from.</p>
+                <p><b>Namespace:</b>A collection of defined symbolic names along with information about the object that each name references.</p>
+                <p><b>Constructor:</b>A method of a class that is automatically called when an object is instantiated from its class.</p>
+                <p><b>Fixture:</b>Fixed testing environment in which test are performed so that results are repeatable.</p>
+                <p><b>Type Hint:</b>Gives you the ability to define the type of values that can be passed for each argument of a function or method. Type</p>
+                <p><b>Type Cast:</b>Assigning a value of one primitive data type to another type.</p>
+                <p><b>Unit Test:</b>Creating test cases to verify all possible states and configuration of a code in order to discover bugs.</p>
+                <p><b>Static:</b>The static type of an object is the declared type of the variable used to refer to it. Restricted in what data they can access.</p>
+                <p><b>Class Method:</b>Methods which are called on a class instead of an instance.</p>
+                <p><b>Facade:</b>A structural design pattern that provides a simpler unified interface to a more complex system.</p>
+                <p><b>Design Pattern:</b>a general repeatable solution to a commonly occurring problem in software design</p>
+                <p><b>Method:</b>A subroutine defined within a class to implement a behaviour.</p>
+                <p><b>property:</b>A variable defined within a class to store a value.</p>
+            </div>
+            <div class="col-sm-5">
+                <h3>General Tips </h3>
+
+                <h6>Be Consistent With Variables</h6>
+                <pre><span id="line1">Example: full_name, first_name, last_name </span>Avoid: a_name, b_name, x, y</pre>
+
+                <h6>Limit Using Too Long/Short Names & Numbers</h6>
+                <pre><span id="line2">Example: test_calculator_multiply_static</span>Avoid: function_to_test_the_addition_calculator, x = "My name",1_name, first_name_1</pre>
+
+                <h6>Use Detailed Variable Names</h6>
+                <pre><span id="line3">Example: add_numbers = "Addition Calculator"</span>Avoid: a = "Addition Calculator" </pre>
+
+                <h6>Follow The Lowercase With Underscore Naming Convention</h6>
+                <pre>Example: add_numbers, multiply_number, subtract_numbers</pre>
+
+                <h6>Documentation String (Used to describe functions, classes and methods)</h6>
+                <pre><span id="line4">def add_numbers(x, y):</span><span id="line5">"""This function adds x+y and returns the result"""</span>   return x + y </pre>
+
+                <h6>Max Line Length</h6>
+                <pre>79 Characters in a line</pre>
+
+                <h6>To Run Tests, Lint and Coverage Report</h6>
+                <pre>pytest  --pylint --cov</pre>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <h3> Pylint Coverage Report </h3>
+            <p>Below is an example of what coverage report looks like.</p>
+            <pre>
+~ $ pytest --pylint --cov
+========================================================================= test session starts ======================================================
+platform linux -- Python 3.9.7, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+rootdir: /home/myuser
+plugins: cov-3.0.0, pylint-0.18.0
+collected 26 items
+--------------------------------------------------------------------------------
+Linting files
+.
+--------------------------------------------------------------------------------
+setup.py s                                                                                                              [  3%]
+calc/calculations/addition.py s                                                                                         [  7%]
+calc/calculations/calculation.py s                                                                                      [ 11%]
+calc/calculations/division.py s                                                                                         [ 15%]
+calc/calculations/multiplication.py s                                                                                   [ 19%]
+calc/calculations/subtraction.py s                                                                                      [ 23%]
+calc/history/calculations.py s                                                                                          [ 26%]
+calculator/__init__.py s                                                                                                [ 30%]
+calculator/main.py s                                                                                                    [ 34%]
+tests/__init__.py s                                                                                                     [ 38%]
+tests/addition.py s                                                                                                     [ 42%]
+tests/calculations_history_test.py s......                                                                              [ 69%]
+tests/calculator_test.py .....                                                                                          [ 88%]
+tests/division.py s                                                                                                     [ 92%]
+tests/multiplication.py s                                                                                               [ 96%]
+tests/subtraction.py s                                                                                                  [100%]
+
+----------- coverage: platform linux, python 3.9.7-final-0 -----------
+Name                                  Stmts   Miss Branch BrPart  Cover
+-----------------------------------------------------------------------
+calc/calculations/addition.py             7      0      2      0   100%
+calc/calculations/calculation.py          9      0      2      0   100%
+calc/calculations/division.py             7      0      2      0   100%
+calc/calculations/multiplication.py       7      0      2      0   100%
+calc/calculations/subtraction.py          7      0      2      0   100%
+calc/history/calculations.py             21      0      0      0   100%
+calculator/main.py                       26      0      0      0   100%
+tests/calculations_history_test.py       26      0      0      0   100%
+tests/calculator_test.py                 14      0      0      0   100%
+-----------------------------------------------------------------------
+TOTAL                                   124      0     10      0   100%
+
+2 empty files skipped.
+======================================================================== 11 passed, 15 skipped in 12.14s ======================================================
+~ $
+</pre>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="unit_nav">
+    <a href="page9.html"> &lt; Previous</a>
+    Page 10 of 13
+    <a href="OOPProgramming.html"> Next > </a>
+</div>
+
+
+{% endblock %}
