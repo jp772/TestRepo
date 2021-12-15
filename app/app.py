@@ -27,7 +27,22 @@ def calculator_get():
 def calculator_post():
     return CalculatorController.post()
 
-@app.route("/Page1", methods=["GET"])
+@app.route("/PylintTutorial", methods=["GET"])
+def page1_get():
+    """Page 1 route"""
+    return Page1.get()
+
+@app.route("/OOPTutorial", methods=["GET"])
+def page1_get():
+    """Page 1 route"""
+    return Page1.get()
+
+@app.route("/AAATutorial", methods=["GET"])
+def page1_get():
+    """Page 1 route"""
+    return Page1.get()
+
+@app.route("/SOLIDTutorial", methods=["GET"])
 def page1_get():
     """Page 1 route"""
     return Page1.get()
