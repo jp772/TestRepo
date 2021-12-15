@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block title %}Pylint{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/SOLID.css') }}"/>
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h1 class="mt-5 mb-4">SOLID Principles</h1>
+    <div class="row">
+        <div class="col-sm-7">
+            <h4>S (Single Responsibility Principle)</h4>
+            <p>According to the Single Responsibility Principle, each class should only have one job. If a class has many responsibilities, it is said to be coupled.
+                When one responsibility is modified, the other responsibility is modified as well.</p>
+            <p>Take a look at the Multiplication class to the right.</p>
+              <menu> <li>which has only one job to get the values from Calculation class and multiply them.</li></menu>
+        </div>
+        <div class="col-sm-5">
+            <h4>Multiplication Class</h4>
+            <pre>class Multiplication(Calculation):
+
+    def get_result(self):
+        """get the multiplication results"""
+        result = 1.0
+        for value in self.values:
+            result = result * value
+        return result
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="w-100 bg-orange-light py-5">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-sm-7">
+                <h4>O (Open-Closed Principle)</h4>
+                <p>According to the Open-Closed Principle, classes, methods and functions should be open for extension and not modification.</p>
+                <p>Take a look at the Calculations class to the right.</p>
+                <menu><li>We have a Calculations class which consist of methods such as get_last_calculation history, count history
+                etc. </li>
+                <li>You can not add get_last_calculation and count history together under one method, instead you should extend under this class so
+                that both method are separate.</li></menu>
+
+            </div>
+            <div class="col-sm-5">
+                <h4>Calculations Class</h4>
+                <pre>
+def count_history():
+    """History Count and get_last method"""
+    return len(Calculations.history)
+    return Calculations.history[-1]
+            </pre>
+                <pre>
+def count_history():
+    """History Count method"""
+     return len(Calculations.history)
+
+def get_last_calculation():
+   """Get the last calculation"""
+   return Calculations.history[-1]
+                </pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-7">
+            <h4>L (Liskov Substitution Principle)</h4>
+            <p>According to the Liskov Substitution Principle, its gives us the ability to replace any instance of a parent class with an instance of one
+            of its child classes without negative side effects.</p>
+            <p>Take a look at the Subtraction class to the right.</p>
+           <menu><li>You can directly give it a value and it would not break anything in parent class.</li></menu>
+
+        </div>
+        <div class="col-sm-5">
+            <h4>Subtraction Class(Child Class)</h4>
+            <pre>class Subtraction(Calculation):
+def get_result(self):
+    """get the subtraction results"""
+    difference_of_values = 0.0
+        for value in self.values:
+            difference_of_values = difference_of_values - value
+        return difference_of_values
+            </pre>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-7">
+            <h4>I (Interface Segregation Principle)</h4>
+            <p>According to the Interface Segregation Principle, the principle states that no client should be forced to depend on methods it does not use.</p>
+            <p>Take a look at the example to the right. The example is in java coding language.</p>
+            <menu><li>Class called ALLInOnePrinter has 3 methods defined. Majority of printers will be able to use all methods listed.</li>
+            <li>There are some old printers which does not have the functionality of scan or fax.</li>
+            <li>We don't have such printers to throw us errors when they are not supposed to use those methods but still forced to use because they are part of one class.</li>
+            <li>The way to solve this problem is to create separate interfaces and only assign the ones that use the functionality.</li>
+            <li>The OldPrinter Class only uses the print functionality so assign only that method.</li></menu>
+
+        </div>
+        <div class="col-sm-5">
+            <h4>Example Class</h4>
+            <pre>class AllInOnePrinter : ISmartDevice
+{
+    public void Print()
+    {
+         // Printing code.
+    }
+
+    public void Fax()
+    {
+         // Beep booop biiiiip.
+    }
+
+    public void Scan()
+    {
+         // Scanning code.
+    }
+}
+            </pre>
+<pre>
+interface IPrinter{
+    void Print();
+}
+
+interface IFax{
+    void Fax();
+}
+
+interface IScanner{
+    void Scan();
+}
+#Old printer class
+class OldPrinter : IPrinter
+{
+    public void Print()
+    {
+         // Printing code.
+    }
+</pre>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-7">
+            <h4>D (Dependency Inversion Principle)</h4>
+            <p>According to the Dependency Inversion Principle, high level classes should not depend on low level classes but instead both should
+            depend on abstraction.</p>
+            <p>Take a look at the example classes to the right.</p>
+              <menu><li>Through the calculator set up, the high level did not change so much. When we added division class we made the modification to abstraction level</li>
+            <li>We added a new class called Division just like Addition.</li>
+            <li>We then used the low-level class to create the object for Division and call the Division method from abstraction.</li></menu>
+
+        </div>
+        <div class="col-sm-5">
+            <h4>High-Level Class</h4>
+            <pre>class Calculation:
+def __init__(self,values: tuple):
+    self.values = Calculation.convert_args_to_list_float(values)
+
+def convert_args_to_list_float(values):
+    list_values_float = []
+    for item in values:
+        list_values_float.append(float(item))
+    return list_values_float
+            </pre>
+            <h4>Abstraction Class</h4>
+<pre>class Division(Calculation):
+def get_result(self):
+     div_num = 1.0
+        for value in self.values:
+            div_num = value / div_num
+        return div_num
+</pre>
+            <h4>Low-level Class</h4>
+            <pre>def division_number(*args):
+calculation = Division(args)
+Calculations.add_calculation(calculation)
+return calculation.get_result()
+</pre>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

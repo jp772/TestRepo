@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Pylint{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/AAA.css') }}"/>
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h1 class="mt-5 mb-4">AAA Testing</h1>
+    <div class="row">
+        <div class="col-sm-7">
+            <p>
+                Arrange-Act-Assert also known as AAA testing. AAA testing is a behavior driven development that suggest you divide your test method into 3 sections called
+                Arrange, Act and Assert. Each section is responsible for the part in which they are named after.
+            </p>
+            <p><b>Arrange:</b> Is where you set up the objects to be tested.</p>
+            <p><b>Act:</b> Is where you act upon the system under testing.</p>
+            <p><b>Assert:</b> Allows you to make the claims about the outcome.</p>
+
+            <p>Testing is very important and the main purpose is to ensure everything is working as expected without any issues.
+            Without testing, a code can have multiple issues which can lead to bad user/customer experiences.</p>
+
+            <h4>Unit Testing</h4>
+            <p>Unit testing involves testing individual components of the software program or application. The main purpose behind this is to check that all the individual parts are working as intended. </p>
+
+
+        </div>
+        <div class="col-sm-5">
+            <img src="../static/images/aaatesting.jpg" alt="Image of AAAtesting flow">
+        </div>
+    </div>
+</div>
+
+<div class="w-100 bg-orange-light py-5">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-sm-7">
+
+                <h5>Create Function</h5>
+                <pre>def test_reverse():</pre>
+
+                <h5>Add Docstring</h5>
+                <pre>"""List.reverse, reverses the items in the list"""</pre>
+
+                <h5>Arrange</h5>
+                <pre>#Arrange
+fruits = ['apple', 'banana', 'grapes', 'orange']</pre>
+
+                <h5>Act</h5>
+                <pre>#Act
+result = fruits.reverse()</pre>
+
+                <h5>Assert</h5>
+                <pre>#Assert
+assert result is None
+assert fruits == ['orange', 'grapes', 'banana', 'apple']</pre>
+
+                <h5>Final Test</h5>
+                <pre>def test_reverse()
+"""list.reverse inverts the order of items in a list, in place"""
+    #Arrange
+    fruits = ['apple', 'banana', 'grapes', 'orange']
+
+    #Act
+    result = fruits.reverse()
+
+    #Assert
+    assert result is None
+    assert fruits == ['orange', 'grapes', 'banana', 'apple']</pre>
+
+            </div>
+            <div class="col-sm-5">
+                <img src="../static/images/AAAprinc.png" alt="Image of AAAtesting Principles">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-7">
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
