@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/basicform.css') }}"/>
     {{ super() }}
     <style type="text/css">
         .important {
@@ -12,7 +13,7 @@
 
     <h1>HTML Form</h1>
 
-    <form action="result.html" method="POST">
+    <form action="result.html" method="POST" class="boxes">
         <label for="value1">Value 1:</label><br>
         <input type="text" id="value1" name="value1" value="1"><br>
         <label for="value2">Value 2:</label><br>

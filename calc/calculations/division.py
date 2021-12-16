@@ -9,5 +9,13 @@ class Division(Calculation):
     calculation A and B from the calcualtion parent class"""
     def get_result(self):
         """Get Result is returning the self.value A and B"""
-        result = self.values[0] / self.values[1]
-        return result
+        div1 = enumerate(self.values)
+        try:
+            for i, j in div1:
+                if i != 0:
+                    div_value = div_value / j
+                else:
+                    div_value = j
+            return round(div_value, 5)
+        except ZeroDivisionError:
+            return 'ZeroDivisionError'

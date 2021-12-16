@@ -6,6 +6,11 @@
         .important { color: #336699; }
         .img1{
             width: 30%;
+            height: 30%;
+            text-align: center;
+            margin-left: 33.5%;
+        }
+        .text{
             text-align: center;
         }
 
@@ -15,6 +20,10 @@
 
     <p class="important">
       <h1 class="mt-5 mb-4">Welcome to Calculator Page</h1>
-        <img class="img1" src="{{ url_for('static', filename='images/calculator.jpg') }}">
+<h6 class="text">Please click on below image to start calculation</h6>
+
+      <a href="/calculator"><img class="img1"alt="" src="{{ url_for('static', filename='images/calculator.jpg') }}"
+         width=150" height="70">
+      </a>
     </p>
 {% endblock %}

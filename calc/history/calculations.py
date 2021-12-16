@@ -3,6 +3,9 @@ from calc.calculations.addition import Addition
 from calc.calculations.subtraction import Subtraction
 from calc.calculations.multiplication import Multiplication
 from calc.calculations.division import Division
+
+import pandas as pd
+
 class Calculations:
     """Calculations class manages the history of calculations"""
     history = []

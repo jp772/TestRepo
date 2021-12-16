@@ -1,11 +1,18 @@
 """Testing Division"""
-import time
+import time, pytest
 import logging
 import pandas as pd
 from calc import log
 from calc.calculations.division import Division
 
 #excep_logs = pd.read_csv("../tests/Results_Log/Exceptionfile.log")
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+Log_Format = logging.Formatter('%(levelname)s %(asctime)s - %(message)s')
+fh = logging.FileHandler('../tests/Results_Log/Exceptionfile.log')
+
+fh.setFormatter(Log_Format)
+logger.addHandler(fh)
 
 def test_calculation_division():
     """testing that our calculator has a static method for division"""
@@ -18,13 +25,15 @@ def test_calculation_division():
         division = Division.create(div)
 
         try:
-            log.log_data_to_logfile(time, record_num, filename, j.col1, " / ", j.col2, df["result"][i])
-            assert division.get_result() == df['result'][i]
+            df_result = df['result'][i].round(decimals=5)
+            log.log_data_to_logfile(time, record_num, filename, j.col1, " / ", j.col2, df_result)
+            assert division.get_result() == df_result
         except ZeroDivisionError as message:
             #excep_logs.to_csv("../tests/Results_Log/Exceptionfile.log")
-            log.logger.error("Zero Division Error occurred, Cannot Divide Number By 0")
+            logger.error("Zero Division Error occurred, Cannot Divide Number By 0")
             assert division.get_result() is True
-            continue
+
+
 
 
 
