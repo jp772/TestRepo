@@ -8,6 +8,14 @@
         }
         .mb-3{
             text-align: center;
+            font-size: 30px;
+        }
+        .operaion{
+            font-size: 50px;
+            color: darkorange;
+        }
+        .mt-5 {
+            color: darkorange;
         }
     </style>
 {% endblock %}
@@ -22,12 +30,12 @@
   <div class="mb-3 row">
 
     <form action="/calculator" method="POST">
-        <label for="value1" class="col-sm-2 col-form-label">Enter Value 1:</label><br>
+        <label for="value1" class="col-sm-2 col-form-label">Enter Value 1:</label>
         <input type="text" id="value1" name="value1" value="1"><br>
-        <label for="value2" class="col-sm-2 col-form-label">Enter Value 2:</label><br>
-        <input type="text" id="value2" name="value2" value="2"><br>
-        <fieldset>
-        <legend>Operation</legend>
+        <label for="value2" class="col-sm-2 col-form-label">Enter Value 2:</label>
+        <input type="text" id="value2" name="value2" value="2">
+        <fieldset><br>
+        <legend class="operaion">Operation</legend>
           <div>
             <input type="radio" name="operation" id="addition" value="addition" checked>
             <label for="addition">addition</label>
@@ -44,7 +52,7 @@
             <input type="radio" name="operation" id="division" value="division">
             <label for="division">division</label>
           </div>
-        </fieldset>
+        </fieldset><br>
 
         <input type="submit" value="Submit">
     </form>
